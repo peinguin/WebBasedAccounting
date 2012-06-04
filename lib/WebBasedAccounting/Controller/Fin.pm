@@ -40,8 +40,6 @@ sub finspoper: Global {
     
     my $idsort="number";
     my $sdvigpn= 0;
-    my $ryadok =1;
-    my $msp=0;
     my $prpoisk = '';
     
     if  ($c->request->params->{poisk}) {
@@ -119,7 +117,6 @@ sub finspoper: Global {
     }
     
     my $txt = '';
-    $txt .= '<table border=1 cellpadding="0" cellspacing="0">';
     $txt .= '<tr bgcolor="#99ccff"><th align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=number&razoper='. $razoper.'&navnakl='.($sdvigpn+1).'&poisk='.$prpoisk.'" id="num" class=winleft>_____________Назва____________</a></NOBR></th>';
     $txt .= '<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&razoper='. $razoper.'&navnakl='.($sdvigpn+1).'&poisk='.$prpoisk.'" class=winleft>_Основ. проводка</a></NOBR></td>';
 
@@ -129,66 +126,26 @@ sub finspoper: Global {
     
     my $idoper;
     
-    while ( my $row = $oper->next() ){
-        
-        my ($id, $num1,$name,$satel,$com,$oc,$coc,$kc,$ckc) = ($row->id, $row->num1,$row->name,$row->satelit ,$row->com,$row->oc,$row->coc,$row->kc,$row->ckc);
-
-        $ryadok = $ryadok+1;
-        
-        $keymove=$keymove+1;
-        my $idmove="r$keymove";
-        my $idmover="s$keymove";
-        
-        if ($zebra eq 0) {
-            $txt .=  '<tr bgcolor="#eeeeee" id='.$idmover.' ><td align=left>' ;
-            $zebra = 1
-        }else{
-            $txt .=  '<tr bgcolor="#dedede" id='.$idmover.' ><td align=left>' ;
-            $zebra = 0
-        }
-    
-        my $com1=uri_escape_utf8($com);
-    
-        $txt .= '<a href="/cgi-bin/finoperadd.cgi?idkrt='.$id.'&razoper='.$razoper.'&psort='.$idsort.'&navnakl='.($sdvigpn+1).'&sprnum='.$msp.'" title='.$com1.' id='.$idmove.'  class="platoper">'.$name.'</a></td>';
-        $txt .=  '<th nowrap><NOBR>' .$oc.' '.$coc.'- - '.$kc.' '.$ckc.' '. '</NOBR></td></tr>';
-    }
-    
-    while ($ryadok < 19) {
-        $ryadok = $ryadok+1;
-        $txt .=  '<tr bgcolor="#eeeeee"><td> ..........</td>' . '<td> ............</td></tr>';
-    };
-    
-    $txt .=  '</table>';
+    #while ($ryadok < 19) {
+    #    $ryadok = $ryadok+1;
+    #    $txt .=  '<tr bgcolor="#eeeeee"><td> ..........</td>' . '<td> ............</td></tr>';
+    #};
     
     my $sdvigPD=$sdvigpn+20;
     if ($porojnia < $sdvigPD) {
         $sdvigPD=$porojnia-15;
     }
-    
-    $txt .= '<div  style="float:left; width: 25%; background-color: #99ccff;">';
-    $txt .= '<a href="?navnakl='.'1'.'&razoper='. $razoper.'&psort='.$idsort.'&poisk='.$prpoisk.'" id="beg" class=winleft>Home</a></div>';
-    $txt .= '<div  style="float:left; width: 24%; background-color: #99ccff;">';
-    $txt .= '<a href="/cgi-bin/sortnakl.cgi?navnakl='.($sdvigpn-18).'&razoper='. $razoper.'&psort='.$idsort.'&poisk='.$prpoisk.'" id="pup" class=winleft>pageUp</a></div>';
-    $txt .= '<div  style="float:left; width: 29%; background-color: #99ccff;">';
-    $txt .= '<a href="/cgi-bin/sortnakl.cgi?navnakl='.($sdvigPD).'&razoper='. $razoper.'&psort='.$idsort.'&poisk='.$prpoisk.'" id="pdw" class=winleft>PageDown</a></div>';
-    $txt .= '<div  style="float:left; width: 22%; background-color: #99ccff;">';
-    $txt .= '<a href="/cgi-bin/sortnakl.cgi?navnakl='.($porojnia-15).'&razoper='. $razoper.'&psort='.$idsort.'&poisk='.$prpoisk.'" id="pend" class=winleft>End</a></div>';
-    $txt .= ' <div  style="clear:both;"></div>';
-    
-    #новий пошук
-    $txt .= '<form id="naklpoisk" action="/cgi-bin/sortnakl.cgi" method="post">';
-    $txt .= '<div id="fpoisk" style="float:left; width: 75%;">';
-    $txt .= '<input type=hidden size=10 name=psort value='.$idsort.'>';
-    $txt .= '<input type=hidden size=10 name=navnakl value='.$sdvigpn.'>';
-    $txt .= '<input type=hidden  name=razoper value='.$razoper.'>';
-    $txt .= '<input type=submit value="Пошук">';
-    $txt .= '<input type=text size=20 id="polep" name="poisk"> -'.$sdvigpn.'-';
-    $txt .= '</div>';
-    $txt .= ' <div  style="clear:both;"></div>';
-    $txt .= '</form>';
 
     $c->stash->{txt} = $txt;
-
+    $c->stash->{idsort} = $idsort;
+    $c->stash->{sdvigpn} = $sdvigpn;
+    $c->stash->{razoper} = $razoper;
+    $c->stash->{sdvigpn} = $sdvigpn;
+    $c->stash->{prpoisk} = $prpoisk;
+    $c->stash->{porojnia} = $porojnia;
+    $c->stash->{sdvigPD} = $sdvigPD;
+    $c->stash->{all} = [ $oper->all() ];
+    
     $c->stash->{template} = 'finspoper.tt';
 }
 

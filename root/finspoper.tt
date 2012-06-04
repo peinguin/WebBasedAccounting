@@ -1,1 +1,40 @@
-[% txt %]
+<table border=1 cellpadding="0" cellspacing="0" id="finspoper">
+[% ryadok = 0 %]
+
+[% FOREACH row IN all %]
+    [% ryadok = ryadok + 1 %]
+
+    <tr bgcolor="#">
+        <td align=left>
+            <a href="/cgi-bin/finoperadd.cgi?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title=[% uri_escape_utf8( row.com ) %]  class="platoper">[% row.name %]</a>
+        </td>
+        <th nowrap>
+            <NOBR>
+                [% row.oc %] [% row.coc %]- - [% row.kc %] [% row.ckc %]
+            </NOBR>
+        </th>
+    </tr>
+[% END %]
+
+</table>
+
+<div  style="float:left; width: 25%; background-color: #99ccff;">
+<a href="?navnakl='.'1'.'&razoper=[% razoper %]&psort=[% idsort %]&poisk=[% prpoisk %]" id="beg" class=winleft>Home</a></div>
+<div  style="float:left; width: 24%; background-color: #99ccff;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl=[% sdvigpn - 18 %]&razoper=[% razoper %]&psort=[% idsort %]&poisk=[% prpoisk %]" id="pup" class=winleft>pageUp</a></div>
+<div  style="float:left; width: 29%; background-color: #99ccff;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl=[% sdvigPD %]&razoper=[% razoper %]&psort=[% idsort %]&poisk=[% prpoisk %]" id="pdw" class=winleft>PageDown</a></div>
+<div  style="float:left; width: 22%; background-color: #99ccff;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl=[% porojnia - 15 %]&razoper=[% razoper %]&psort=[% idsort %]&poisk=[% prpoisk %]" id="pend" class=winleft>End</a></div>
+ <div  style="clear:both;"></div>
+
+<form id="naklpoisk" action="/cgi-bin/sortnakl.cgi" method="post">
+<div id="fpoisk" style="float:left; width: 75%;">
+<input type=hidden size=10 name=psort value=[% idsort %]>
+<input type=hidden size=10 name=navnakl value=[% sdvigpn %]>
+<input type=hidden  name=razoper value=[% razoper %]>
+<input type=submit value="Пошук">
+<input type=text size=20 id="polep" name="poisk"> -[% sdvigpn %]-
+</div>
+<div  style="clear:both;"></div>
+</form>

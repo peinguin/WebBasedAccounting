@@ -160,3 +160,10 @@ tr.blue {
     background-repeat:repeat-x;
 
 }
+
+#finspoper tr{
+    background-color:#eeeeee;
+}
+#finspoper tr:nth-child(2n){
+    background-color:#dedede;
+}
