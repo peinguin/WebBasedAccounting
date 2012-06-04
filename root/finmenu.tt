@@ -1,0 +1,11 @@
+<div id="menu" style="float:left; text-align: center; width: 20%; background-color: #ffffcc;">
+<a style="color:#0000ff; font-size:14pt;" href="/cgi-bin/stoppoiskn.cgi" id="foper" class=fin>Бухгалтерські операції</a></div>
+<div id="menu1" style="float:left; text-align: center; width: 20%; background-color: #ffffcc;">
+<a style="color:#0000ff; font-size:14pt;" href="/cgi-bin/stoppoiskn.cgi" id="fprovod" class=fin>Бухгалтерські проводки</a></div>
+<div id="menu2" style="float:left; text-align: center; width: 20%; background-color: #ffffcc;">
+<a style="color:#0000ff; font-size:14pt;" href="/cgi-bin/stoppoiskn.cgi" id="zvyt" class=fin>Формування звітів</a></div>
+<div id="menu3" style="float:left; text-align: center; width: 20%; background-color: #ffffcc;">
+<a style="color:#0000ff; font-size:14pt;" href="/cgi-bin/stoppoiskn.cgi" id="dovid" class=fin>Довідники</a></div>
+<div id="menu4" style="float:left; text-align: center; width: 20%; background-color: #ffffcc;">
+<a style="color:#0000ff; font-size:14pt;" href="/cgi-bin/stoppoiskn.cgi" id="rasch1" class=fin>Налаштування</a></div>
+<div  style="clear:both;"></div>

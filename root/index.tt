@@ -1,0 +1,51 @@
+<html>
+    <head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>Учет финансов</title>
+	<link href="/static/css/style1.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/static/js/standartny/jquery.js"></script>  
+	<script type="text/javascript" src="/static/js/standartny/jquery.form.js"></script>
+	<script type="text/javascript" src="/static/js/standartny/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/static/js/standartny/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="/static/js/cfin.js"></script>
+
+    </head>
+    <body>
+
+	<div id="skladmenu" style="width: 99%; border: 1px solid #000000;"></div>
+
+	<table border="1" width="100%">
+
+	    <tr>
+		<td valign="top" width=30%>
+	<div id="menuplat" style="border: 1px solid #000000;">Cntr - панелі. Стрілки - рух. Enter - виконати.</div>
+		</td>
+		<td valign="top" width=70%>
+	<div id="menuoper" style="border: 1px solid #000000;"></div>
+		</td>
+	    </tr>
+
+	    <tr>
+		<td valign="top" width=30%>
+		    <div id="content">
+		    </div>
+		</td>
+		<td valign="top" width=70%>
+
+		    <div id="shownakl" style="width: 99%;">
+		    </div>
+		</td>
+	    </tr>
+	    <tr>
+		<td valign="bottom">
+	<div id="slade" style="border: 1px solid #000000;"></div>
+		</td>
+		<td valign="bottom">
+	<div id="loader" style="border: 1px solid #000000;"></div>
+		</td>
+
+	    </tr>
+	</table>
+	<div id="request"></div>
+    </body>
+</html>
