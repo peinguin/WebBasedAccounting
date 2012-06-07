@@ -1,12 +1,14 @@
 <table border=1 cellpadding="0" cellspacing="0" id="finspoper">
-[% ryadok = 0 %]
+
+[% keymove = 0 %]
 
 [% FOREACH row IN all %]
-    [% ryadok = ryadok + 1 %]
 
-    <tr bgcolor="#">
+[% keymove = keymove + 1 %]
+
+    <tr id='s[% keymove %]'>
         <td align=left>
-            <a href="/cgi-bin/finoperadd.cgi?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title=[% uri_escape_utf8( row.com ) %]  class="platoper">[% row.name %]</a>
+            <a href="/cgi-bin/finoperadd.cgi?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title="[% row.com %]" id='r[% keymove %]' class="platoper">[% row.name %]</a>
         </td>
         <th nowrap>
             <NOBR>

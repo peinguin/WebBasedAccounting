@@ -149,6 +149,144 @@ sub finspoper: Global {
     $c->stash->{template} = 'finspoper.tt';
 }
 
+sub finmenuop: Global  {
+    my ( $self, $c ) = @_;
+    
+    my $razoper="bank";
+    if  ($c->request->params->{razoper}) {
+        $razoper=$c->request->params->{razoper};
+    }
+    
+    $c->stash->{razoper} = [ $razoper ];
+    
+    $c->stash->{template} = 'finmenuop.tt';
+}
+
+sub f1op: Global  {
+    my ( $self, $c ) = @_;
+    
+    
+    my $idsort="number";
+    my $sdvigpn= "0";
+    
+    my $ryadok =1;
+    
+    my $naklid;
+    my $tekriadok=1;
+    my $prym="no";
+    my $prpoisk;
+    
+    if  ($c->request->params->{redag}) {
+        $prym=$c->request->params->{redag};
+    }
+    
+    
+    if  ($c->request->params->{poisk}) {
+        $prpoisk=$c->request->params->{poisk};
+    }
+    
+    if  ($c->request->params->{psort}) {
+        $idsort=$c->request->params->{psort};
+    }
+    
+    if  ($c->request->params->{navnakl}) {
+        $sdvigpn=$c->request->params->{navnakl};
+    }
+    
+    if  ($c->request->params->{id}) {
+        $tekriadok=$c->request->params->{id};
+    }
+
+    my $muser="buh1";
+    my $mperiod=1;
+    my $mid=0;
+    my $mfull=1;
+    
+    my $finstatus = $c->model('FinModel::Finstatus');
+    $finstatus = $finstatus->search({uslog => $muser});
+    my $res = $finstatus->single();
+    
+    ($mid,$muser,$mperiod,$mfull) = ($res->id, $res->uslog, $res->period,  $res->fulloper );
+    
+    my $fo340 = $c->model('FinModel::Fo340');
+    if  ($mperiod eq 2) {
+        my $fo340 = $c->model('FinModel::Fo340new');
+    }
+    my ($porojnia);
+
+    #
+    #Перейти на останні рядки якщо перше завантаження скрипта 
+    if  ($c->request->params->{navnakl}) {
+        $sdvigpn=$c->request->params->{navnakl};
+        $sdvigpn=$sdvigpn-1;
+    }
+
+    #Показати таблицю операцій 
+    # id користувача
+    my $satel=$mid;
+    
+    if ($sdvigpn < 0) {
+        $sdvigpn= 0;
+    }
+
+    if ($mfull eq 2) {
+        #$sqlr ='SELECT SQL_CALC_FOUND_ROWS id,name,data,dok,kau,kaukc,summa,priznak,zakname,zaknamekc,satelit FROM '.$base.'';
+    }else{
+        $fo340 = $fo340->search({satelit => $satel});
+    };
+
+    $fo340 = $fo340->search({}, {order_by => '(data) desc,(id) desc,name, summa'}) if $idsort eq 'number';
+    $fo340 = $fo340->search({}, {order_by => 'name,data,kau'})                     if $idsort eq 'name';
+    $fo340 = $fo340->search({}, {order_by => 'data,name, summa'})                  if $idsort eq 'date';
+    $fo340 = $fo340->search({}, {order_by => 'dok'})                               if $idsort eq 'dok' ;
+    $fo340 = $fo340->search({}, {order_by => 'kau,name'})                          if $idsort eq 'kau' ;
+    $fo340 = $fo340->search({}, {order_by => 'summa,kau'})                         if $idsort eq 'summa' ;
+    $fo340 = $fo340->search({}, {order_by => 'priznak,kau'})                       if $idsort eq 'priz' ;
+    $fo340 = $fo340->search({}, {order_by => 'kaukc,name'})                        if $idsort eq 'kaukc' ;
+    $fo340 = $fo340->search({}, {order_by => '(data) desc,(id) desc,name, summa'}) if $idsort eq 'number';
+    $fo340 = $fo340->search({}, { offset => $sdvigpn, rows => 18 });
+    
+    $porojnia = $fo340->count;
+    
+    if ($porojnia < $sdvigpn) {
+        $sdvigpn=$porojnia-15;
+    }
+
+    if ($sdvigpn < 0) {
+        $sdvigpn= 0;
+    }
+    
+    my $keymove=0;
+    my $zebra=0;
+    
+    my $idoper;
+    
+    my $zebra1=0;
+    my $mrecnum=0;
+=cut
+    while ($ryadok < 19) {;
+        $ryadok = $ryadok+1;
+        print  '<tr bgcolor="#eeeeee"><td>..</td>'.'<td> ............</td>'.'<td> ............</td>'.'<td>............</td>'.'<td> ............</td>'.'<td> ............</td>'.'<td> ............</td>'.'<td>............</td>'.'<td>.</td>'.'<td>..</td></tr>';
+    };
+=cut  
+    
+    my $sdvigPD=$sdvigpn+20;
+    if ($porojnia < $sdvigPD) {
+        $sdvigPD=$porojnia-15;
+    }
+    
+    my $allop=1;
+    
+    if ($mfull eq 2) {
+        $allop=1;
+    }else{
+        $allop=2;
+    }
+    
+    $c->stash->{all} = [ $fo340->all() ];
+    
+    $c->stash->{template} = 'f1op.tt';
+}
 
 =head1 AUTHOR
 

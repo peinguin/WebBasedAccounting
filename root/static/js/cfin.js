@@ -135,19 +135,17 @@ function pokaz (p) {
 }
 
 function menuop (par) {
-//	$("#request").append("menu"+f1opmenu);
-if (f1opmenu=="y") {
-	$.ajax({
-	    url: "/cgi-bin/finmenuop.cgi",
-//	    cache: false,
-	    data: par,
-	    success: function(html) {
-		$("#menuoper").html(html);
-	    }
-	});
-}else{
-		$("#menuoper").text("Ins-додати рядок");
-};
+      if (f1opmenu=="y") {
+            $.ajax({
+                url: "/finmenuop",
+                data: par,
+                success: function(html) {
+                    $("#menuoper").html(html);
+                }
+            });
+      }else{
+            $("#menuoper").text("Ins-додати рядок");
+      };
 }
 
 function menuplat (parm) {
@@ -188,7 +186,7 @@ function content (cl) {
 	$("#content").blur();
 
 	$.ajax({
-	    url: "/cgi-bin/finmenu.cgi",
+	    url: "/finmenu",
 //	    cache: false,
 	    success: function(html) {
 		$("#skladmenu").html(html);

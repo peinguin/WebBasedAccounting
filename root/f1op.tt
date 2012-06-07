@@ -1,0 +1,143 @@
+<form id="formf1op" action="/cgi-bin/finredf1op.cgi" method="post">
+<table border=1 cellpadding="0" cellspacing="0" id="finspoper">
+
+<tr bgcolor="#62dcfb"><th align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=number&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" id="num" class=winright>d </a></NOBR></th>
+<th align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" id="num" class=winright>__________Операція___________</a></NOBR></th>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=dok&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>__ДОК__</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=date&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>Дата</a></NOBR></td>
+
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=kau&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>_КАУ_</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=kaukc&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>_КАУ1_</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=summa&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>____СУМА___</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=priz&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>_______Коментар_______</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>_</a></NOBR></td>
+<td align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" class=winright>[% porojnia %]</a></NOBR></td>
+</tr>
+
+[% keymove = 0 %]
+
+[% FOREACH row IN all %]
+    
+    [% keymove = keymove + 1 %]
+    
+    <tr id='t[% keymove %]' ><td align=left>
+
+    [% zakplat   = row.mzakname   %]
+    [% zakplatkc = row.mzaknamekc %]
+    
+    <a href="/cgi-bin/findublf1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=[% prym %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]&komm2=[% row.mzakname %]"  class="riaddubl">+</a></td>
+    
+    
+    [% IF (prym == "oper") and row.tekriadok == row.mrecnum %]
+        <td id=c1[% keymove %] bgcolor="#ffffff"><FONT COLOR="#ff0000">[% row.mnameop %]</FONT></td>
+    [% else %]
+        <th id=c1[% keymove %] align="left"><a href="/cgi-bin/f1op.cgi?idkrt=[% row.num1 %]&id=[% row.mrecnum %]&redag=oper&psort=[% row.idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title=[% zakplat %] id=p1[% keymove %] class="redoper">[% row.mnameop %]</a></th>
+    [% END %]
+
+    [% IF row.mdok == "" %]
+        [% row.mdok = "0" %]
+    [% END %]    
+    [% IF (prym == "dok") and $tekriadok==$row.mrecnum %]
+        [% IF row.mdok == 0 %]
+            <td id=c2[% keymove %]><input type=text size=7 onblur="this.focus()" id="vvod" name="parval"></td>
+        [% ELSE %]
+            <td id=c2[% keymove %]><input type=text size=7 value=[% row.mdok %] onblur="this.focus()" id="vvod" name="parval"></td>
+        [% END %]        <input type=hidden  name=id value=[% row.mrecnum %]>
+        <input type=hidden  name=redag value="dok">
+    [% ELSE %]
+        <th id=c2[% keymove %]><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=dok&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id=p2[% keymove %]  class="redf1op">[% row.mdok %]</a></th>
+    [% END %]    
+    [% IF (prym == "data") and $tekriadok==$row.mrecnum %]
+        <td id=c3[% keymove %]><input type=text size=8  onblur="this.focus()" id="vvod" value=[% row.mdataop %] name="parval"></td>
+        <input type=hidden  name=id value=[% row.mrecnum %]>
+        <input type=hidden  name=redag value="data">
+    [% ELSE %]
+        <th id=c3[% keymove %]><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=data&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id=p3[% keymove %]  class="redf1op">[% row.mdataop %]</a></th>
+    [% END %]    
+    [% IF (prym == "kau") and $tekriadok==$row.mrecnum %]
+        <th id=c4[% keymove %]><a style="color:#ff0000; font-size:14pt;" href="/cgi-bin/cleankau.cgi?idkrt=[% num1 %]&fbase=1&id=[% row.mrecnum %]&redag=rkau&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title=[% zakplat %] id=p4[% keymove %]  class="cleankau">clean</a></th>
+    [% ELSE %]
+        <th id=c4[% keymove %]><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=kau&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title=[% zakplat %] id=p4[% keymove %]  class="redplat">[% row.mkauop %]</a></th>
+    [% END %]    
+    
+    [% IF (prym == "kaukc") and $tekriadok==$row.mrecnum %]
+        <th id=c5[% keymove %]><a style="color:#ff0000; font-size:14pt;" href="/cgi-bin/cleankau.cgi?idkrt=[% num1 %]&fbase=1&id=[% row.mrecnum %]&redag=rkaukc&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title=[% zakplat %] id=p5[% keymove %]  class="cleankau">clean</a></th>
+    [% ELSE %]
+        <th id=c5[% keymove %]><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=kaukc&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title=[% zakplatkc %] id=p5[% keymove %]  class="redplat">[% row.mkaukcop %]</a></th>
+    [% END %]    
+    [% IF (prym == "sum") and $tekriadok==$row.mrecnum %]
+    
+        [% IF $row.msummaop == 0 %]
+            <td id=c6[% keymove %]><input type=text onblur="this.focus()" id="vvod" size=9 name="parval"></td>
+        [% ELSE %]
+            <td id=c6[% keymove %]><input type=text onblur="this.focus()" id="vvod" size=9 value='.sprintf("%9.2f",$row.msummaop) %] name="parval"></td>
+        [% END %]        <input type=hidden  name=id value=[% row.mrecnum %]>
+        <input type=hidden  name=redag value="summa">
+    [% ELSE %]
+        [% IF $row.msummaop<0 %]
+            <th id=c6[% keymove %]><a style="color:#ff0000;" href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=sum&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id=p6[% keymove %]  class="redf1op">[% row.msummaop %]</a></th>
+        [% ELSE %]
+            <th id=c6[% keymove %]><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=sum&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id=p6[% keymove %]  class="redf1op">[% row.msummaop %]</a></th>
+        [% END %]    [% END %]    
+    [% IF $row.mprizop == "" %]
+        [% row.mprizop = "-" %]
+    [% END %]    [% IF (prym == "priznak") and $tekriadok==$row.mrecnum %]
+        [% IF $row.mprizop == "-" %]
+            <td id=c7[% keymove %]><input type=text size=23 onblur="this.focus()" id="vvod" name="parval"></td>
+        [% ELSE %]
+            <td id=c7[% keymove %]><input type=text size=23 onblur="this.focus()" id="vvod" value="[% row.mprizop %]" name="parval"></td>
+        [% END %]    
+        <input type=hidden  name=id value=[% row.mrecnum %]>
+        <input type=hidden  name=redag value="priznak">
+    [% ELSE %]
+        <th id=c7[% keymove %] align="left"><a href="/cgi-bin/f1op.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=priznak&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id=p7[% keymove %]  class="redf1op">[% row.mprizop %]</a></th>
+    [% END %]    
+    <td bgcolor="#ddeedd">[% row.satel %]</td>
+    
+    <td bgcolor="#ddeedd"><a href="/cgi-bin/finf1opdel.cgi?idkrt=[% num1 %]&id=[% row.mrecnum %]&redag=[% prym %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" id='p[% keymove %]'  class="delrriad"> Удалить</td></tr>
+    
+    <script type="text/javascript">
+        document.getElementById("vvod").focus()
+    </script>
+[% END %]
+
+</table>
+
+ <div  style="clear:both;"></div>
+<div id="zbf10p" style="float:left; width: 20%; background-color: #62dcfb;">
+<input type=hidden  name=idkrt value=[% krtid %]>
+<input type=submit value='Зберегти'>
+</div>
+
+<div  style="float:left; width: 19%; background-color: #62dcfb;">
+<a href="?navnakl=' %]1' %]&redag=[% prym %]&psort=[% idsort %]&poisk=[% prpoisk %]&sprnum=[% msp %]&id=[% naklid %]" id="begr" class=winright>На початок(Home)</a></div>
+<div  style="float:left; width: 19%; background-color: #62dcfb;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl='.($sdvigpn-18) %]&redag=[% prym %]&psort=[% idsort %]&sprnum=[% msp %]&poisk=[% prpoisk %]&id=[% naklid %]" id="pupr" class=winright>Назад(PageUp)</a></div>
+<div  style="float:left; width: 19%; background-color: #62dcfb;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl='.($sdvigPD) %]&redag=[% prym %]&psort=[% idsort %]&sprnum=[% msp %]&poisk=[% prpoisk %]&id=[% naklid %]" id="pdwr" class=winright>Вперед(PageDown)</a></div>
+<div  style="float:left; width: 19%; background-color: #62dcfb;">
+<a href="/cgi-bin/sortnakl.cgi?navnakl='.($porojnia-15) %]&redag=[% prym %]&psort=[% idsort %]&sprnum=[% msp %]&poisk=[% prpoisk %]&id=[% naklid %]" id="pendr" class=winright>До кінця(End)</a></div>
+
+
+<div id="recvizity3" style="float:left; width: 2%;">
+<input type=checkbox id=delriad name="del" value="Del">
+</div>
+
+ <div  style="clear:both;"></div>
+
+</form>
+
+<div style="float:left; text-align: center; width: 9%; background-color:#999999;">Місяць</div>
+
+<div style="float:left; text-align: center; width: 12%; background-color:#[% IF mperiod == 1 %]d5ffd2[% else %]b1b1b1[% END %];">
+<a style="color:#000000; font-size:14pt;" href="/cgi-bin/finperiod.cgi?id=[% mid %]&redag=1" class=month>Звітній</a></div>
+<div id="menup11" style="float:left; text-align: center; width: 1%; color:#ffffff; background-color: #999999;">.</div>
+<div id="menup2" style="float:left; text-align: center; width: 12%; background-color:[% IF mperiod == 1 %]d5ffd2[% else %]b1b1b1[% END %];">
+<a style="color:#000000; font-size:14pt;" href="/cgi-bin/finperiod.cgi?id=[% mid %]&redag=2" class=month>Новий</a></div>
+
+<div id="menup11" style="float:left; text-align: center; width: 1%; color:#ffffff; background-color: #999999;">.</div>
+<div id="menup3" style="float:left; text-align: center; width: 30%; background-color:#b1b1b1;">
+<a style="color:#000000; font-size:14pt;" href="/cgi-bin/finfull.cgi?id=[% mid %]&redag=[% allop %]" class=month>Показати всі операції</a></div>
+
+
+<div  style="clear:both;"></div>
