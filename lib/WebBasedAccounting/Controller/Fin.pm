@@ -285,6 +285,13 @@ sub f1op: Global  {
     
     $c->stash->{all} = [ $fo340->all() ];
     
+    $c->stash->{prym} = $prym;
+    $c->stash->{msp} = '';
+    $c->stash->{sdvigpn} = $sdvigpn;
+    $c->stash->{naklid} = $naklid;
+    $c->stash->{idsort} = $idsort;
+    $c->stash->{tekriadok} = $tekriadok;
+    
     $c->stash->{template} = 'f1op.tt';
 }
 

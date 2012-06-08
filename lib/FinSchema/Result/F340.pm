@@ -235,7 +235,7 @@ __PACKAGE__->add_columns(
   "booc",
   { data_type => "integer", is_nullable => 0 },
   "data",
-  { data_type => "date", datetime_undef_if_invalid => 1, is_nullable => 0 },
+  { data_type => "date", datetime_undef_if_invalid => 1, is_nullable => 0, inflate_date => 1 },
   "summa",
   { data_type => "decimal", is_nullable => 0, size => [17, 2] },
   "priznak",
