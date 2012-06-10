@@ -157,7 +157,7 @@ sub finmenuop: Global  {
         $razoper=$c->request->params->{razoper};
     }
     
-    $c->stash->{razoper} = [ $razoper ];
+    $c->stash->{razoper} = $razoper;
     
     $c->stash->{template} = 'finmenuop.tt';
 }
@@ -291,8 +291,15 @@ sub f1op: Global  {
     $c->stash->{naklid} = $naklid;
     $c->stash->{idsort} = $idsort;
     $c->stash->{tekriadok} = $tekriadok;
+    $c->stash->{mperiod} = $mperiod;
     
     $c->stash->{template} = 'f1op.tt';
+}
+
+sub finoperadd: Global{
+    my ( $self, $c ) = @_;
+
+    $c->stash->{template} = 'finoperadd.tt';
 }
 
 =head1 AUTHOR

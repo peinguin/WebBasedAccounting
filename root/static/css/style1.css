@@ -161,9 +161,12 @@ tr.blue {
 
 }
 
-#finspoper tr{
+.zebra tr{
     background-color:#eeeeee;
 }
-#finspoper tr:nth-child(2n){
+.zebra tr:nth-child(2n){
     background-color:#dedede;
+}
+.zebra thead tr{
+    background-color: #99ccff;
 }

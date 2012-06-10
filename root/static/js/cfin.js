@@ -962,22 +962,19 @@ var recid =$(this).attr("href").split("idkrt=")[1];
 recid =recid.split("&")[0];
 
 sprnum =$(this).attr("href").split("sprnum=")[1];
-sprnum =sprnum.split("&")[0];
-//		$("#request").append("plat1 "+$(this).attr("href").split("?")[1]);
-//		$("#request").append("plat1 "+$(this).attr("href"));
 // Параметри для додання.редагування бази
-        var par ="fbase="+finbase+"&idkrt="+recid+"&id="+recordid+"&sprnum="+sprnum;
-//        var par ="idkrt="+recid+"&id="+recordid+"&sprnum="+sprnum;
-//		$("#request").append("plat11 "+par);
+        var par ="fbase="+finbase+"&idkrt="+recid+"&id="+recordid;
+    if(sprnum){
+    	sprnum =sprnum.split("&")[0];
+    	par += "&sprnum="+sprnum;
+    }
+		
 //// Параметри для додання.редагування бази
 	$.ajax({
 	    url: $(this).attr("href"),
 	    type: "POST",
-//	    cache: false,
 	    data:  par,
-//	    beforeSumbit: request,
 	    success: function (data) {
-//		$("#request").append("plat1"+data);
 	}
 	});
 

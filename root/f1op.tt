@@ -1,5 +1,5 @@
 <form id="formf1op" action="/cgi-bin/finredf1op.cgi" method="post">
-<table border=1 cellpadding="0" cellspacing="0" id="finspoper">
+<table border=1 cellpadding="0" cellspacing="0" class="zebra">
 
 <tr bgcolor="#62dcfb"><th align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=number&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" id="num" class=winright>d </a></NOBR></th>
 <th align="center"><NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&redag=[% prym %]&sprnum=[% msp %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]&id=[% naklid %]" id="num" class=winright>__________Операція___________</a></NOBR></th>
@@ -144,7 +144,7 @@
 <div style="float:left; text-align: center; width: 12%; background-color:#[% IF mperiod == 1 %]d5ffd2[% ELSE %]b1b1b1[% END %];">
 <a style="color:#000000; font-size:14pt;" href="/cgi-bin/finperiod.cgi?id=[% mid %]&redag=1" class=month>Звітній</a></div>
 <div id="menup11" style="float:left; text-align: center; width: 1%; color:#ffffff; background-color: #999999;">.</div>
-<div id="menup2" style="float:left; text-align: center; width: 12%; background-color:[% IF mperiod == 1 %]d5ffd2[% ELSE %]b1b1b1[% END %];">
+<div id="menup2" style="float:left; text-align: center; width: 12%; background-color:[% IF mperiod == 2 %]d5ffd2[% ELSE %]b1b1b1[% END %];">
 <a style="color:#000000; font-size:14pt;" href="/cgi-bin/finperiod.cgi?id=[% mid %]&redag=2" class=month>Новий</a></div>
 
 <div id="menup11" style="float:left; text-align: center; width: 1%; color:#ffffff; background-color: #999999;">.</div>

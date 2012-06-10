@@ -1,5 +1,14 @@
-<table border=1 cellpadding="0" cellspacing="0" id="finspoper">
-
+<table border=1 cellpadding="0" cellspacing="0" id="finspoper" class="zebra">
+    <thead>
+        <tr bgcolor="#99ccff">
+            <th align="center">
+                <NOBR><a href="/cgi-bin/sortnakl.cgi?psort=number&razoper=[% razoper %]&navnakl=[% sdvigpn + 1 %]&poisk=[% $prpoisk %]" id="num" class=winleft>_____________Назва____________</a></NOBR></th>
+            <td align="center">
+                <NOBR><a href="/cgi-bin/sortnakl.cgi?psort=name&razoper=[% razoper %]&navnakl=[% sdvigpn + 1 %]&poisk=[% prpoisk %]" class=winleft>_Основ. проводка</a></NOBR>
+            </td>
+        </tr>
+</thead>
+<tbody>
 [% keymove = 0 %]
 
 [% FOREACH row IN all %]
@@ -8,7 +17,7 @@
 
     <tr id='s[% keymove %]'>
         <td align=left>
-            <a href="/cgi-bin/finoperadd.cgi?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title="[% row.com %]" id='r[% keymove %]' class="platoper">[% row.name %]</a>
+            <a href="/finoperadd?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title="[% row.com %]" id='r[% keymove %]' class="platoper">[% row.name %]</a>
         </td>
         <th nowrap>
             <NOBR>
@@ -17,7 +26,7 @@
         </th>
     </tr>
 [% END %]
-
+</tbody>
 </table>
 
 <div  style="float:left; width: 25%; background-color: #99ccff;">
