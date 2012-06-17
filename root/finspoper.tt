@@ -17,7 +17,7 @@
 
     <tr id='s[% keymove %]'>
         <td align=left>
-            <a href="/finoperadd?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]" title="[% row.com %]" id='r[% keymove %]' class="platoper">[% row.name %]</a>
+            <a href="/finoperadd?idkrt=[% row.id %]&razoper=[% razoper %]&psort=[% idsort %]&navnakl=[% sdvigpn + 1 %]&sprnum=[% msp %]" title="[% row.com %]" id='r[% keymove %]' class="platoper">[% row.name %]</a>
         </td>
         <th nowrap>
             <NOBR>

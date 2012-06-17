@@ -150,7 +150,7 @@ function menuop (par) {
 
 function menuplat (parm) {
 //		$("#request").text("meuplat"+parm);
-var menurl="/cgi-bin/finmenuplat.cgi";
+var menurl="/cgi-bin/finmenuplat.cgi";alert(parm);
 if (parm == 1) {
 menurl="/cgi-bin/finmenno.cgi";
 }
@@ -962,6 +962,7 @@ var recid =$(this).attr("href").split("idkrt=")[1];
 recid =recid.split("&")[0];
 
 sprnum =$(this).attr("href").split("sprnum=")[1];
+sprnum =sprnum.split("&")[0];
 // Параметри для додання.редагування бази
         var par ="fbase="+finbase+"&idkrt="+recid+"&id="+recordid;
     if(sprnum){
